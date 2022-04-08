@@ -1,0 +1,72 @@
+{% load movie_tag %}
+<header class="header">
+    <div class="container-fluid px-lg-5">
+        <!-- nav -->
+        <nav class="py-4">
+            <div id="logo">
+                <h1><a href="index.html" class="editContent"
+
+                </h1>
+            </div>
+
+            <label for="drop" class="toggle">Menu</label>
+            <input type="checkbox" id="drop">
+            <ul class="menu mt-2">
+                <li class="active"><a href="index   .html">Главная</a></li>
+                <li>
+                   
+                    <div>
+                        {% for genre in view.get_genress %}
+                <li class="editContent">
+                    <li><a href="{% url 'genre_lists' genre.url %}">{{ genre.title }}</a></li>
+                    
+                </li>
+            {% endfor %}
+                    </div>
+                </li>
+
+                
+
+             
+               
+
+
+
+              
+                        
+                        
+                        
+                
+                    
+
+
+                
+                <li>
+                    {% if user.is_authenticated %}
+                        <span>| {{ user.username }} |</span>
+                        <a href="{% url 'account_logout' %}"
+                        style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">
+                            Выход
+                        </a>
+                    {% else %}
+                        <a href="{% url 'account_login' %}"
+                        style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">
+                            Вход
+                        </a>
+
+                        <a href="{% url 'account_signup' %}"
+                        style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">
+                            Регистрация
+                        </a>
+                    {% endif %}
+
+                </li>
+            </ul>
+        </nav>
+        <!-- //nav -->
+    </div>
+</header>
+<!-- //header -->
+<!--/banner-->
+
+<!--// banner-inner -->

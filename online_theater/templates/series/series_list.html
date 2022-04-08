@@ -1,0 +1,13 @@
+{% extends 'movie/base.html' %}
+{% block title %} {% endblock title %}
+{% block header %}  {% endblock header %}
+{% block series %}
+    
+                                    {% for genres_movies in genres %}
+                                                                    {% for series in genres_movies.get_series_genres.all %}
+                                                                        {{ series.title }}
+                                                                    {% endfor %}
+                                                                {% endfor %}
+
+
+{% endblock series %}
