@@ -12,35 +12,91 @@
             <label for="drop" class="toggle">Menu</label>
             <input type="checkbox" id="drop">
             <ul class="menu mt-2">
-                <li class="active"><a href="index   .html">Главная</a></li>
-                <li>
-                   
-                    <div>
-                        {% for genre in view.get_genress %}
-                <li class="editContent">
-                    <li><a href="{% url 'genre_lists' genre.url %}">{{ genre.title }}</a></li>
-                    
-                </li>
-            {% endfor %}
-                    </div>
-                </li>
+                <li class="active"><a href=" {% url 'base' %} ">| Главная |</a></li>
 
-                
 
              
-               
+                        
 
 
 
               
                         
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="{% url 'movies_list' %}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Фильмы
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div>
+                                    {% for movie_genre in view.get_movies_genres %}
+                            <li class="editContent">
+                                <li><a href="{% url 'movie_genre_lists' movie_genre.url %}">{{ movie_genre.title }}</a></li>
+                                
+                            </li>
+                                    {% endfor %}
+                                </div>
+                            </ul>
+                        </li>
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="{% url 'series_list' %}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Сериалы
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div>
+                                    {% for series_genre in view.get_series_genres %}
+                            <li class="editContent">
+                                <li><a href="{% url 'series_genre_ist' series_genre.url %}">{{ series_genre.title }}</a></li>
+                                
+                            </li>
+                                    {% endfor %}
+                                </div>
+                            </ul>
+                        </li>
+                        
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="{% url 'cartoon_list' %}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Мультфильмы
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div>
+                                    {% for cartoon_genre in view.get_cartoon_genres %}
+                            <li class="editContent">
+                                <li><a href="{% url 'cartoon_genre_ist' cartoon_genre.url %}">{{ cartoon_genre.title }}</a></li>
+                                
+                            </li>
+                                    {% endfor %}
+                                </div>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="{% url 'anime_list' %}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Аниме 
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div>
+                                    {% for anime_genre in view.get_anime_genres %}
+                            <li class="editContent">
+                                <li><a href="{% url 'anime_genre_ist' anime_genre.url %}">{{ anime_genre.title }}</a></li>
+                                
+                            </li>
+                                    {% endfor %}
+                                </div>
+                            </ul>
+                        </li>
                         
                         
-                
-                    
+                <li> -->
+                    <!-- <div>
+                        
+                        {% for category in movie_category %}
+                            <li><a href="{% url 'categories' %}">{{ category.title }}</a></li>
+                        {% endfor %}
+                    </div> -->
 
 
-                
+
                 <li>
                     {% if user.is_authenticated %}
                         <span>| {{ user.username }} |</span>

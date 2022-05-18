@@ -1,30 +1,30 @@
 {% extends 'movie/base.html' %}
-{% block title %} Movies {% endblock title %}
- {% include 'include/header.html' %} 
-
+{% block title %} Мультфильмы {% endblock title %}
+{% include 'include/header.html' %}
 {% block movie %}
     <div class="left-ads-display col-lg-9">
         <div class="row">
-            {% for genres in genre_movie %}
+            {% for cartoon in genre_cartoon %}
                 <div class="col-md-4 product-men">
                     <div class="product-shoe-info editContent text-center mt-lg-4">
                         <div class="men-thumb-item">
-                            <img src="{{ genres.poster.url }}" class="img-fluid" alt="">
+                            <img src="{{ cartoon.poster.url }}" class="img-fluid" alt="">
                         </div>
                         <div class="item-info-product">
                             <h4 class="">
-                                <a href="{% url 'movie_detail' genres.url %}"
+                                <a href="{% url 'cartoon_detail' cartoon.url %}"
                                    class="editContent">
-                                   {{ genres.title }}
+                                    {{ cartoon.title }}
                                 </a>
                             </h4>
-                            
 
                             <div class="product_price">
                                 <div class="grid-price">
-                                    <span class="money editContent">{{ genres.tagline }}</span>
+                                    
                                 </div>
+                            </div>
                             
+                        </div>
                     </div>
                 </div>
             {% endfor %}

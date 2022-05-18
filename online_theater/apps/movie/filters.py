@@ -1,11 +1,11 @@
-from .models import Movie, Genre
+from .models import Movie, Genre_movie
 from django.views.generic import ListView
 from django.http import JsonResponse
 from django.db.models import Q
 
 class GenreYear:
     def get_genres(self):
-        return Genre.objects.all()
+        return Genre_movie.objects.all()
 
 
 class FilterMoviesView(GenreYear, ListView):

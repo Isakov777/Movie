@@ -1,19 +1,14 @@
 from django import template
-from apps.movie.models import Series, Genre, Category
+from apps.movie.models import  Category, Movie, Series
 
 
 register = template.Library()
 
 
-@register.simple_tag()
-def get_genres():
-    return Genre.objects.all()
 
 
-@register.simple_tag()
-def get_series():
-    so_series = Series.objects.all()
-    return so_series
+
+
 
 
 @register.simple_tag()
@@ -27,7 +22,17 @@ def get_categories():
     
 #     return 
 
-# @register.inclusion_tag('movie/tags/last_movie.html')
-# def get_last_movies(count=5):
-#     movies = Movie.objects.order_by("id")[:count]
-#     return {"last_movies": movies}
+@register.inclusion_tag('all/list.html')
+def get_last_movies(count=5):
+    movies = Movie.objects.order_by("id")[:count]
+    return {"last_movies": movies}
+
+
+# @register.inclusion_tag('all/list.html')
+# def get_last_series(count=5):
+#     series = Series.objects.order_by("id")[:count]
+#     return {"last_series": series}
+
+# @register.inclusion_tag('all/list.html')
+# def get_all(*movies,):
+#     return get_all(get_last_movies, get_last_series)

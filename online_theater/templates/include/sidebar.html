@@ -1,7 +1,43 @@
 {% load movie_tag %}
 <div class="search-bar w3layouts-newsletter">
     <h3 class="sear-head editContent">Поиск фильма</h3>
-    <form action="{% url 'search' %}" method="get" class="d-flex editContent">
+    <form action="{% url 'movie_search' %}"  method="get" class="d-flex editContent">
+        <input type="search" placeholder="Введите название..." name="key_word" class="form-control" required="">
+        <button type="submit" class="btn1 btn">
+            <span class="fa fa-search" aria-hidden="true"></span>
+        </button>
+    </form>
+</div>
+
+<br>
+
+<div class="search-bar w3layouts-newsletter">
+    <h3 class="sear-head editContent">Поиск сериала</h3>
+    <form action="{% url 'series_search' %}" method="get" class="d-flex editContent">
+        <input type="search" placeholder="Введите название..." name="key_word" class="form-control" required="">
+        <button type="submit" class="btn1 btn">
+            <span class="fa fa-search" aria-hidden="true"></span>
+        </button>
+    </form>
+</div>
+
+<br>
+
+<div class="search-bar w3layouts-newsletter">
+    <h3 class="sear-head editContent">Поиск мультфильма</h3>
+    <form action="{% url 'cartoon_search' %}" method="get" class="d-flex editContent">
+        <input type="search" placeholder="Введите название..." name="key_word" class="form-control" required="">
+        <button type="submit" class="btn1 btn">
+            <span class="fa fa-search" aria-hidden="true"></span>
+        </button>
+    </form>
+</div>
+
+<br>
+
+<div class="search-bar w3layouts-newsletter">
+    <h3 class="sear-head editContent">Поиск аниме</h3>
+    <form action="{% url 'anime_search' %}" method="get" class="d-flex editContent">
         <input type="search" placeholder="Введите название..." name="key_word" class="form-control" required="">
         <button type="submit" class="btn1 btn">
             <span class="fa fa-search" aria-hidden="true"></span>
@@ -40,9 +76,8 @@
 <br>
 <br>
 
-{% block last_movie %} 
-{% include 'movie/tags/last_movie.html' %}
-{% endblock last_movie %}
-<!-- //discounts -->
-<!-- reviews -->
+
+
+
+
 

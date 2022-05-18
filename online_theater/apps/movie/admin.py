@@ -1,13 +1,13 @@
 
 from django.contrib import admin
-from apps.movie.models import Genre, Movie, MovieShots, Actor, RatingStar, Rating, Review, Series, Category
+from apps.movie.models import Genre_movie, Genre_series, Movie, MovieShots, Actor, RatingStar, Rating, Review, Series, Category, Cartoon, Genre_cartoon, Anime, Genre_anime, MovieVideo, SeriesVideo, CartoonVideo, AnimeVideo
 from django import forms
 
 from ckeditor_uploader.widgets import CKEditorUploadingWidget 
 
 from django.contrib import admin
 from embed_video.admin import AdminVideoMixin
-from .models import Item
+from .models import Item, SeriesReview
 
 
 
@@ -55,11 +55,11 @@ class MovieAdmin(admin.ModelAdmin):
             'fields': ('year', 'world_premier', 'country'),
         }),
         (None, {
-            'fields': ('description', 'poster')
+            'fields': ('description', 'poster', 'videos')
         }),
         ("Actors", {
             'classes':('collapse'),
-            'fields': (('actors', 'directors', 'genres', 'category'), )
+            'fields': (('actors', 'directors', 'genres', ), )
         }),
         (None, {
             'fields': (('budget', 'fees_in_usa', 'fees_in_world'))
@@ -101,7 +101,15 @@ class ReviewAdmin(admin.ModelAdmin):
     readonly_fields = ('name', 'email')
 
 
-@admin.register(Genre)
+
+admin.site.register(SeriesReview)
+
+
+@admin.register(Genre_movie)
+class GenreAdmin(admin.ModelAdmin):
+    list_display = ('title', 'url', 'id')
+
+@admin.register(Genre_series)
 class GenreAdmin(admin.ModelAdmin):
     list_display = ('title', 'url', 'id')
 
@@ -141,8 +149,39 @@ admin.site.register(RatingStar)
 admin.site.register(Series)
 
 
+
 class ItemAdmin(AdminVideoMixin, admin.ModelAdmin):
     pass
 
 admin.site.register(Item, ItemAdmin)
-admin.site.register(Category)
+admin.site.register(Category)   
+
+admin.register(CartoonVideo)
+class CartoonVideoAdmin(admin.ModelAdmin):
+    list_display = ('video', 'id')
+
+
+admin.site.register(Cartoon)
+
+
+@admin.register(Genre_cartoon)
+class GenreAdmin(admin.ModelAdmin):
+    list_display = ('title', 'url', 'id')
+
+admin.site.register(Anime)
+
+@admin.register(AnimeVideo)
+class AnimeMovieAdmin(admin.ModelAdmin):
+    list_display = ('video', 'id')
+
+@admin.register(Genre_anime)
+class GenreAdmin(admin.ModelAdmin):
+    list_display = ('title', 'url', 'id')
+
+@admin.register(MovieVideo)
+class MovieVideoAdmin(admin.ModelAdmin):
+    list_display = ( 'video', 'id')
+
+@admin.register(SeriesVideo)
+class MovieVideoAdmin(admin.ModelAdmin):
+    list_display = ( 'video', 'id')

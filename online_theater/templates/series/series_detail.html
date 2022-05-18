@@ -1,6 +1,6 @@
 {% extends 'movie/base.html' %}
 {% load static %}
-{% block title %} {{ movie.title }} {% endblock title %}
+{% block title %} {{ series.title }} {% endblock title %}
 {% block container %}
     <div class="container py-md-3">
 {% endblock container %}
@@ -9,66 +9,51 @@
     <div class="side-bar col-lg-4">
 {% endblock sidebar %}
 
-{% block movie %}
+{% block series %}
     <div class="left-ads-display col-lg-8">
         <div class="row">
             <div class="desc1-left col-md-6">
-                <img src="{{ movie.poster.url }}" class="img-fluid" alt="">
+                <img src="{{ series.poster.url }}" class="img-fluid" alt="">
             </div>
             <div class="desc1-right col-md-6 pl-lg-4">
                 <h3 class="editContent">
-                    {{ movie.title }}
+                    {{ series.title }}
                 </h3>
                 <h5 class="editContent"></h5>
                 <ul>
                     <li style="list-style: none">
-                        <span><b>Год:</b> {{ movie.year }}</span></li>
+                        <span><b>Год:</b> {{ series.year }}</span></li>
                     <li style="list-style: none">
-                        <span><b>Страна:</b> {{ movie.country }}</span>
-                    </li>
-                    <li style="list-style: none">
-                        <span><b>Слоган:</b> {{ movie.tagline }}</span>
+                        <span><b>Страна:</b> {{ series.country }}</span>
                     </li>
                     <li style="list-style: none">
-                        <span><b>Режиссер:</b>
-                            {% for director in movie.directors.all %}
-                                <a href="{% url 'actor_detail' director.name %}">
-                                    {{ director.name }} |
-                                </a>
-                            {% endfor %}
-                        </span>
+                        <span><b>Слоган:</b> {{ series.tagline }}</span>
                     </li>
-                    <li style="list-style: none"><span><b>Актеры:</b>
-                        {% for actor in movie.actors.all %}
-                            <a href="{% url 'actor_detail' actor.name %}">
-                                    {{ actor.name }} |
-                            </a>
-                        {% endfor %}
-                                </span>
-                    </li>
+                    
+                    
                     <li style="list-style: none"><span><b>Жанр:</b>
                         
-                        {% for genre in movie.genres.all %}
+                        {% for genre in series.genres.all %}
                         <a href="{% url 'filter'  %}"></a>
                             {{ genre.title}} |
                         {% endfor %}
                                     </span>
                     </li>
                     <li>
-                        <span><b>Премьера в мире:</b> {{ movie.world_premier }}</span>
+                        <span><b>Премьера в мире:</b> {{ series.world_premier }}</span>
                     </li>
                     <li>
-                        <span><b>Бюджет:</b> ${{ movie.budget }}</span></li>
+                        <span><b>Бюджет:</b> ${{ series.budget }}</span></li>
                     <li>
-                        <span><b>Сборы в США:</b> ${{ movie.fees_in_usa }}</span></li>
+                        <span><b>Сборы в США:</b> ${{ series.fees_in_usa }}</span></li>
                     <li>
-                        <span><b>Сборы в мире:</b> ${{ movie.fess_in_world }}</span>
+                        <span><b>Сборы в мире:</b> ${{ series.fess_in_world }}</span>
                     </li>
                     <li>
                         <form action="{% url 'add_rating' %}" method="post" name="rating">
                             <b>Рейтинг:</b>
                             {% csrf_token %}
-                            <input type="hidden" value="{{ movie.id }}" name="movie">
+                            <input type="hidden" value="{{ series.id }}" name="series">
                             <span class="rating">
                                 {% for k, v in star_form.fields.star.choices %}
                                     <input id="rating{{ v }}" type="radio" name="star"
@@ -110,16 +95,11 @@
         <div class="row sub-para-w3layouts mt-5">
 
             <h3 class="shop-sing editContent">
-                О фильме {{ movie.title }}
+                О фильме {{ series.title }}
             </h3>
-            <p>
-                {% for image in movie.movieshots_set.all %}
-                    <img src="{{ image.image.url }}" class="img-movie-shots "
-                         alt="{{ image.description }}">
-                {% endfor %}
-            </p>
+            
             <p class="editContent">
-                {{ movie.description|safe }}
+                {{ series.description|safe }}
             </p>
         </div>
 
@@ -127,7 +107,7 @@
       
             
             <video class="embed-responsive embed-responsive-16by9" controls="controls" >
-                <source src="{{ movie.videos.video.url }}" type="video/mp4" />
+                <source src="{{ series.videos.video.url }}" type="video/mp4" />
             </video>
       
             
@@ -148,9 +128,9 @@
                 <!-- contact form grid -->
                 <div class="contact-single">
                     <h3 class="editContent">
-                        <span class="sub-tittle editContent">{{ movie.reviews_set.count }}</span>Оставить
+                        <span class="sub-tittle editContent">{{ series.reviews_set_series.count }}</span>Оставить
                         отзыв</h3>
-                    <form action="{% url 'add_review' movie.pk %}" method="post" class="mt-4"
+                    <form action="{% url 'series_add_review' series.pk %}" method="post" class="mt-4"
                           id="formReview">
                         {% csrf_token %}
                         <input type="hidden" name="parent" id="contactparent" value="">
@@ -186,10 +166,10 @@
                 <!--  //contact form grid ends here -->
             </div>
         </div>
-        {% for review in movie.get_review %}
+        {% for review in series.get_series_review %}
             <div class="media py-5">
 
-                <img src="{{ user.account_set.all.get_avatar_url }}" class="mr-3 img-fluid" alt="image">
+                <img src="{{  user.socialaccount_set.all.0.get_avatar_url }}" class="mr-3 img-fluid" alt="image">
                 
                 <div class="media-body mt-4">
                     <h5 class="mt-0 editContent">
@@ -200,7 +180,7 @@
                     </p>
                     <a href="#formReview"
                        onclick="addReview('{{ review.name }}', '{{ review.id }}')">Ответить</a>
-                    {% for rew in review.comments_comment.all %}
+                    {% for rew in review.comments_series_comment.all %}
                         <div class="media mt-5 editContent">
                             <a class="pr-3" href="#">
                                 <img src="" class="img-fluid "
@@ -223,6 +203,5 @@
         }
 
     </script>
-{% endblock movie %}
-
+{% endblock series %}
 

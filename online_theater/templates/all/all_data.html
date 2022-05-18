@@ -1,0 +1,131 @@
+{% extends 'movie/base.html' %}
+{% block title %} NaNoRiO {% endblock title %}
+
+{% block movie %}
+    <div class="left-ads-display col-lg-9">
+        <div class="row">
+            {% for movies in movie %}
+                <div class="col-md-4 product-men">
+                    <div class="product-shoe-info editContent text-center mt-lg-4">
+                      <div class="men-thumb-item">
+                        <img src="{{ movies.poster.url }}" class="img-thumbnail" alt="">
+                    </div>
+                        <div class="item-info-product">
+                            <h4 class="">
+                                <a href="{% url 'movie_detail' movies.url %}"
+                                   class="editContent">
+                                    {{ movies.title }}
+                                </a>
+                            </h4>
+
+                            
+
+                            <div class="product_price">
+                                <div class="grid-price">
+                                    <span class="money editContent">{{ movies.tagline }}</span>
+                                </div>
+                                
+                    </div>
+                </div>
+                
+            {% endfor %}
+            
+        </div>
+
+        
+{% endblock movie %}
+
+
+{% block series %}
+    <div class="left-ads-display col-lg-9">
+        <div class="row">
+            {% for serie in series %}
+                <div class="col-md-4 product-men">
+                    <div class="product-shoe-info editContent text-center mt-lg-4">
+                      <div class="men-thumb-item">
+                        <img src="{{ serie.poster.url }}" class="img-thumbnail" alt="">
+                    </div>
+                        <div class="item-info-product">
+                            <h4 class="">
+                                <a href="{% url 'series_detail' serie.url %}"
+                                   class="editContent">
+                                    {{ serie.title }}
+                                </a>
+                            </h4>
+                            <div class="product_price">
+                                <div class="grid-price">
+                                    <span class="money editContent">{{ serie.tagline }}</span>
+                        </div>
+                                
+                </div>
+        </div>
+            {% endfor %}
+    </div>
+
+{% endblock series %}
+
+
+
+{% block cartoon %}
+    <div class="left-ads-display col-lg-9">
+        <div class="row">
+            {% for cartoon in cartoons %}
+                <div class="col-md-4 product-men">
+                    <div class="product-shoe-info editContent text-center mt-lg-4">
+                      <div class="men-thumb-item">
+                        <img src="{{ cartoon.poster.url }}" class="img-thumbnail" alt="">
+                    </div>
+                        <div class="item-info-product">
+                            <h4 class="">
+                                <a href="{% url 'cartoon_detail' cartoon.url %}"
+                                   class="editContent">
+                                    {{ cartoon.title }}
+                                </a>
+                            </h4>
+
+                            
+
+                            <div class="product_price">
+                                <div class="grid-price">
+                                    <span class="money editContent">{{ cartoon.tagline }}</span>
+                                </div>
+                                
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+{% endblock cartoon %}
+
+
+
+{% block animes %}
+    <div class="left-ads-display col-lg-9">
+        <div class="row">
+            {% for animes in anime %}
+                <div class="col-md-4 product-men">
+                    <div class="product-shoe-info editContent text-center mt-lg-4">
+                      <div class="men-thumb-item">
+                        <img src="{{ animes.poster.url }}" class="img-thumbnail" alt="">
+                    </div>
+                        <div class="item-info-product">
+                            <h4 class="">
+                                <a href="{% url 'anime_detail' animes.url %}"
+                                   class="editContent">
+                                    {{ animes.title }}
+                                </a>
+                            </h4>
+
+                            
+
+                            <div class="product_price">
+                                <div class="grid-price">
+                                    <span class="money editContent">{{ animes.tagline }}</span>
+                                </div>
+                                
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+{% endblock animes %}
